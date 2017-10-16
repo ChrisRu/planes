@@ -2,10 +2,7 @@
 Tried recreating an image in HTML5 canvas for fun.
 
 [Live version](https://chrisru.github.io/planes/dist/)
+|
+[Source Image](https://i.imgur.com/tWTYrKb.jpg)
 
-![source](https://i.imgur.com/tWTYrKb.jpg)
-[So
-7
-https://chrisru.github.io/planes/dist/
-7
-https://chrisru.github.io/planes/dist/urce](https://i.imgur.com/tWTYrKb.jpg)
+![Source Image](https://i.imgur.com/tWTYrKb.jpg)
