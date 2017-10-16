@@ -1,10 +1,16 @@
+import { debounce } from './util';
+
 /**
  * Create a canvas element
  * @param {HTMLElement} root - Root element to insert canvas element in
  * @param {any} draw - Draw method
  */
-export const createCanvas = (root, animate, updateInterval) => {
+export const createCanvas = (root, animate, stopAnimate, updateInterval) => {
+  root.innerHTML = ''; // eslint-disable-line no-param-reassign
+
   const canvas = document.createElement('canvas');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
   canvas.style.background = '#1C1D22';
   root.appendChild(canvas);
 
@@ -21,11 +27,10 @@ export const createCanvas = (root, animate, updateInterval) => {
 
   const ctx = canvas.getContext('2d');
 
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    animate(ctx);
-  });
+  window.addEventListener('resize', debounce(() => {
+    stopAnimate();
+    createCanvas(root, animate, stopAnimate, updateInterval);
+  }, 200));
 
-  window.dispatchEvent(new CustomEvent('resize'));
+  animate(ctx);
 };

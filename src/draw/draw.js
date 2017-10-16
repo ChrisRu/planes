@@ -10,6 +10,7 @@ const colors = [
 ];
 let paths = generatePaths(colors.length);
 let interval = 0.01;
+let animationFrame;
 
 /**
  * Change the interval
@@ -17,6 +18,13 @@ let interval = 0.01;
  */
 export const updateInterval = newInterval => {
   interval = newInterval;
+};
+
+/**
+ * Cancel the animation
+ */
+export const stopAnimate = () => {
+  window.cancelAnimationFrame(animationFrame);
 };
 
 /**
@@ -53,5 +61,5 @@ export const animate = (ctx, index = 0, percent = 0) => {
     }
   });
 
-  requestAnimationFrame(() => animate(ctx, newIndex, newPercent));
+  animationFrame = requestAnimationFrame(() => animate(ctx, newIndex, newPercent));
 };

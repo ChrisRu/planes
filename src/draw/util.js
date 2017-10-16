@@ -91,3 +91,23 @@ export const getGradient = (
  * @returns {number} Distance between points
  */
 export const lineDistance = (p1, p2) => Math.hypot(p2.x - p1.x, p2.y - p1.y);
+
+/**
+ * Debounce a  method
+ * @param callback {any} Method to execute
+ * @param time {*} Time to throttle for 
+ * @param context {*} Context to execute method in
+ * @returns Throttled method
+ */
+export const debounce = (callback, wait, context = this) => {
+  let timeout = null;
+  let callbackArgs = null;
+
+  const later = () => callback.apply(context, callbackArgs);
+
+  return () => {
+    callbackArgs = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
